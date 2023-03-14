@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshop. Online bookstore for developers.</title>
+    <link rel="stylesheet" href="/normalize.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rampart+One&family=Righteous&family=Slabo+27px&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <form action="#">
+        <h2>ORDER FORM</h2>
+        <div class="formlist">
+          <div class="field-name">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="userName" minlength="4" maxlength="15" placeholder="Enter your name" required />
+          </div>
+          <div class="field-name">
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="userSurname" minlength="5" maxlength="20" placeholder="Enter your surname" required/>
+          </div>
+          <div class="field-name">
+            <label for="street">Street</label>
+            <input type="text" id="street" name="street" minlength="5" maxlength="15" placeholder="Enter your street name" required />
+          </div>
+          <div class="field-name">
+            <label for="house">House</label>
+            <input  type="text" id="house" name="house" maxlength="15" placeholder="Enter your house number" required />
+          </div>
+          <div class="field-name">
+            <label for="flat">Flat</label>
+            <input type="text" id="flat" name="flat" maxlength="15" placeholder="Enter your flat number" required/>
+          </div>
+          <div class="field-name">
+            <label for="date">Delivery date</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+
+          <fieldset>
+            <legend>Payment options:</legend>
+            <div class="field-name payment">
+              <input type="radio" id="cash" name="payment" value="cash" required checked>
+              <label for="cash">Cash</label>
+            </div>
+            <div class="field-name payment">
+              <input type="radio" id="card" name="payment" value="card" required>
+              <label for="card">Card</label>
+            </div>
+          </fieldset>
+
+          <div class="gift-section">
+            <label>Choose 2 gifts:</label> 
+            <div class="field-name">
+              <input type="checkbox" name="gifts[]" value="pack-as-gift" />
+              <label>Pack as a gift</label>
+            </div>
+            <div class="field-name">
+              <input type="checkbox" name="gifts[]" value="add-postcard" />
+             <label>Add postcard</label>
+            </div>
+            <div class="field-name">
+               <input type="checkbox" name="gifts[]" value="discount" />
+               <label>Provide 2% discount to the next purchase</label>
+            </div>
+            <div class="field-name">
+               <input type="checkbox" name="gifts[]" value="branded-pen" required/>
+               <label>Branded pen or pencil</label>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+    <!-- <script src="/script.js"></script> -->
+  </body>
+</html>
