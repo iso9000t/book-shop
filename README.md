@@ -1,1 +1,1 @@
-https://github.com/iso9000t).github.io/book-shop/
+https://github.com/iso9000t/book-shop/index.html
