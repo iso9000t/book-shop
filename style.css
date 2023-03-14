@@ -5,6 +5,7 @@
 body {
     background-color: rgb(228, 199, 180);
     position: relative;
+    z-index: 0;
 }
 
 .container {
@@ -23,20 +24,59 @@ header {
 
 }
  .cart {
-    width: 400px;
-    height: 100px;
+    width: 325px;
+    height: 60px;
     background-color: rgb(255, 255, 255);
-    position: absolute;
-    top: 0;
-    right: 10px;
+    position: fixed;
+    top: 0px;
+    right: 7px;
     border-radius: 0 0 10px 10px;
-    
+    overflow: hidden;
+    font-weight: 100;
+    border: 3px ridge;
+    border-color: transparent rgb(176, 105, 105) rgb(176, 105, 105) rgb(176, 105, 105);
+    transition: background-color 0.3s ease-out;
+    z-index: 2;
  }  
+ .cart-header{
+    text-align: center;
+    z-index: -2;
+ }
 
  .cart:hover {
-    height: 500px;
-    transition: height 0.5s ease-in;
+    /* height: fit-content; */
+    background-color: rgb(248, 246, 130);
  }
+.hidden {
+    transform: scaleY(0);
+    transform-origin: top;
+}
+.cart-count {
+    position: fixed;
+    width: 325px;
+    height: 25px;
+    top: 30px;
+    right: 7px;
+    padding-top: 33px;
+    background-color: rgb(176, 105, 105);
+    border: 2px ridge;
+    border-color: transparent rgb(176, 105, 105) rgb(176, 105, 105) rgb(176, 105, 105);
+    border-radius: 0 0 10px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1.3rem;
+    z-index: 1;
+    color: rgb(249, 249, 249);
+    text-align: center;
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: transform 0.3s ease-out;
+}
+.cart-list {
+    background-color: #fff;
+    height: fit-content;
+}
+
 
 h1 {
     font-family: 'Righteous', cursive;
@@ -195,7 +235,7 @@ form {
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-top: 70px;
+margin-top: 0px;
 border: thick double rgb(138, 88, 88) ;
 border-radius: 10px;
 }
@@ -205,6 +245,7 @@ display: flex;
 flex-direction: column;
 gap: 20px;
 align-items: flex-end;
+
 }
 
 .field-name {
@@ -212,13 +253,21 @@ align-items: flex-end;
     justify-content: space-between;
     gap: 20px;
     align-items: baseline;
+    justify-content: flex-start;
+    align-items: center;
+    
 }
 
 input {
-    border-radius: 4px;
+    border-radius: 7px;
     background-color: rgba(228, 205, 199, 0.712);
     width: 230px;
     height: 25px;
+    padding-left: 10px;
+    text-align: left;
+    color: rgb(97, 97, 97);
+    font-family: 'Righteous', cursive;
+    font-weight: 200;
     
     
 }
@@ -232,8 +281,81 @@ label {
 
 input:invalid {
     border: 2px solid rgb(177, 40, 40);
+    
+    
 }
 
 input:valid {
-    border: 2px solid rgb(118, 118, 134);
+    border: 2px solid rgb(88, 79, 79);
+}
+
+input:focus {
+    outline: none;
+    border-color: rgb(88, 79, 79);
+    border-radius: 2px;
+    transition: border-radius 0.3s ease-in-out;
+    
+}
+
+input::placeholder {
+    color: rgb(155, 129, 129);
+}
+
+
+fieldset {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+    align-items: center;
+    border: 2px solid rgb(155, 129, 129);
+    border-radius: 4px;
+    height: 25px;
+    width: 210px;
+    justify-content: space-around;
+    
+}
+
+
+.payment {
+
+    display: flex;
+    justify-content: space-between;
+    row-gap: 1px;
+    column-gap: 0px;
+    align-items: center;
+    width: 60px;
+    height: 5px;
+    
+ 
+}
+
+
+legend {
+    color: rgb(138, 88, 88);
+}
+
+input[type="radio"] {
+    transform: scale(1.5);
+    margin-right: 5px;
+    
+}
+
+.gift-section {
+ display: flex;
+ flex-direction: column;
+ 
+ border: 2px solid rgb(138, 88, 88);
+ border-radius: 4px;
+align-self: center;
+}
+
+.field-name input[type=checkbox] {
+    width: 10px;
+    scale: 1.7;
+
+}
+
+.gift-section .field-name {
+    padding-left: 20px;
+    padding-right: 20px;
 }
