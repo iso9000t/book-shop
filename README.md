@@ -1,2 +1,1 @@
-# book-shop
-init: start bookshop task for rs-school
+https://github.com/iso9000t/book-shop/
