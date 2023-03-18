@@ -1,74 +1,14 @@
-/* const booksArray =[{
-  "author": "Douglas Crockford",
-  "imageLink": "/image/Douglas-Crockford.jpg",
-  "title": "JavaScript: The Good Parts: The Good Parts",
-  "price": 30,
-  "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
-},
-  {
-    "author": "David Herman",
-    "imageLink": "/image/David-Herman.jpg",
-    "title": "Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript",
-    "price": 22,
-    "description": "Effective JavaScript is organized around 68 proven approaches for writing better JavaScript, backed by concrete examples. You’ll learn how to choose the right programming style for each project, manage unanticipated problems, and work more successfully with every facet of JavaScript programming from data structures to concurrency"
-  },
-  {
-    "author": "David Flanagan",
-    "imageLink": "/image/David-Flanagan.jpg",
-    "title": "JavaScript: The Definitive Guide",
-    "price": 40,
-    "description": "This Fifth Edition is completely revised and expanded to cover JavaScript as it is used in today's Web 2.0 applications. This book is both an example-driven programmer's guide and a keep-on-your-desk reference, with new chapters that explain everything you need to know to get the most out of JavaScript"
-  },
-  {
-    "author": " Eric Elliott",
-    "imageLink": "/image/Eric-Elliott.jpg",
-    "title": "Programming JavaScript Applications",
-    "price": 19,
-    "description": "Take advantage of JavaScript’s power to build robust web-scale or enterprise applications that are easy to extend and maintain. By applying the design patterns outlined in this practical book, experienced JavaScript developers will learn how to write flexible and resilient code that’s easier—yes, easier—to work with as your code base grows."
-  },
-  {
-    "author": "Addy Osmani",
-    "imageLink": "/image/Addy-Osmani.jpg",
-    "title": "Learning JavaScript Design Patterns",
-    "price": 32,
-    "description": "With Learning JavaScript Design Patterns, you’ll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you."
-  },
-  {
-    "author": "Boris Cherny",
-    "imageLink": "/image/Boris-Cherny.jpg",
-    "title": "Programming TypeScript",
-    "price": 28,
-    "description": "Any programmer working with a dynamically typed language will tell you how hard it is to scale to more lines of code and more engineers. That’s why Facebook, Google, and Microsoft invented gradual static type layers for their dynamically typed JavaScript and Python code. This practical book shows you how one such type layer, TypeScript, is unique among them: it makes programming fun with its powerful static type system."
-  },
-  {
-    "author": "Alex Banks, Eve Porcello",
-    "imageLink": "/image/Alex-Banks_Eve-Porcello.jpg",
-    "title": "Learning React, 2nd Edition",
-    "price": 25,
-    "description": "If you want to learn how to build efficient React applications, this is your book. Ideal for web developers and software engineers who understand how JavaScript, CSS, and HTML work in the browser, this updated edition provides best practices and patterns for writing modern React code. No prior knowledge of React or functional JavaScript is necessary."
-  },
-  {
-    "author": "Bradley Meck Alex Young and Mike Cantelon",
-    "imageLink": "/image/Bradley-Meck_Alex-Young_Mike-Cantelon.jpg",
-    "title": "Node.js in Action",
-    "price": 38,
-    "description": "Node.js in Action, Second Edition is a thoroughly revised book based on the best-selling first edition. It starts at square one and guides you through all the features, techniques, and concepts you'll need to build production-quality Node applications."
-  },
-  {
-    "author": "Kyle Simpson",
-    "imageLink": "/image/Kyle-Simpson.jpg",
-    "title": "You Don't Know JS Yet: Get Started",
-    "price": 26,
-    "description": "It seems like there's never been as much widespread desire before for a better way to deeply learn the fundamentals of JavaScript. But with a million blogs, books, and videos out there, just where do you START? Look no further!"
-  },
-  {
-    "author": "John Resig and Bear Bibeault",
-    "imageLink": "/image/John-Resig_Bear-Bibeault.jpg",
-    "title": "Secrets of the JavaScript Ninja",
-    "price": 33,
-    "description": "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up."
-  }
-] */
+/* // Fetch data from JSON file
+const booksArray = [];
+fetch('books.json')
+    .then(response => response.json())
+    .then(data => { 
+        booksArray.push(...data);
+        renderAllProducts();
+       
+    }) */
+   
+
 /////////Creating all the newElements for layout
 function createDomElem(parentElement, newTagIs, newElemClass = "", newElemID = "", textContent = "") {
     const fragment = document.createDocumentFragment();
@@ -82,38 +22,59 @@ function createDomElem(parentElement, newTagIs, newElemClass = "", newElemID = "
 }
 
 //// all elements
+const body = document.querySelector('body');
 const container = document.querySelector('.container');
 const header = createDomElem(container, 'header');
 const headerContent = createDomElem(header, 'h1', undefined, undefined, 'BOOKstore');
 const main = createDomElem(container, 'main');
+const confirmLink = createDomElem(main, 'a', 'confirm', undefined);
+confirmLink.setAttribute('href', 'order.html');
+const confirmButton = createDomElem(confirmLink, 'button', 'confirm-button', undefined, 'confirm');
 const cart = createDomElem(main, 'div', "cart", undefined);
 const cartCountElement = createDomElem(main, 'div', 'hidden', undefined, `You have 0 book(s) in your cart.`);
 const cartHeader = createDomElem(cart, 'h2', 'cart-header', undefined, 'PLACE YOUR ORDERS HERE');
-const cartLine1 = createDomElem(cart, 'h2', 'cart-header', undefined, 'PLACE YOUR ORDERS HERE');
-const cartLine3 = createDomElem(cart, 'h2', 'cart-header', undefined, 'PLACE YOUR ORDERS HERE');
+const cartListContainer = createDomElem(main, 'div', 'cart-container-hidden', undefined);
+const cartList = createDomElem(cartListContainer, 'ol', 'cart-list', undefined);
+
+
+
+/* const cartListElement2 = createDomElem(cartListContainer, 'h4', 'cart-header', undefined, 'PLACE YOUR ORDERS HERE'); */
+const showHideElem = document.querySelector('.show-hide');
+
 const cards = createDomElem(main, 'div', 'cards'); 
 const footer = createDomElem(container, 'footer', undefined, undefined);
 const footerContacts = createDomElem(footer, 'h2', 'contacts', undefined, 'Contacts');
 const footeraddress = createDomElem(footer, 'h3', 'address', undefined, 'Address: 704 Hintz Park, Suite 391, 77824-4392,<br> West Murray, Wyoming,<br> United States ');
 const footerPhone = createDomElem(footer, 'h3', 'phone', undefined, '+1 202-918-2132');
 const footerEmail = createDomElem(footer, 'h3', 'email', undefined, 'office@bookstore.com');
+const removeButton = document.querySelector('.remove');
+let beingDragged;
+let cartCountNum = 0;
 
+// Fetch cart items from JSON file
 
+/* fetch('books.json')
+    .then(response => response.json())
+    .then(cartItemsArray => { 
+        cartArray = cartItemsArray;
+        renderAllCartItems();   
+    })
 
-// Fetch data from JSON file
+ */
 const booksArray = [];
+/* const cartArray = []; */
 fetch('books.json')
     .then(response => response.json())
-    .then(data => { 
-        booksArray.push(...data);
-        bookDraw();
+    .then(productsArray => {
+        booksArray.push(...productsArray);
+        renderAllProducts();
        
     })
-    .catch(error => console.error(error)); 
-
-
-
-function bookDraw() {
+/* /*     .catch(error => {
+        console.log(error);
+    }); */
+ 
+function renderAllProducts() {
     const cardsContainer = document.querySelector('.cards');
     let bookId = 0;
 
@@ -124,7 +85,8 @@ function bookDraw() {
         const card = document.createElement('div');
         card.classList.add('card');
         card.setAttribute('id', `${bookId}-book`);
-        bookId++;
+        card.setAttribute('draggable', `true`);
+        
 
         const img = document.createElement('img');
         img.src = book.imageLink;
@@ -138,8 +100,9 @@ function bookDraw() {
         const showMore = document.createElement('button');
         showMore.textContent = 'Show more';
         showMore.classList.add("show");
+        showMore.setAttribute('id', `${bookId}`);
         buttonDiv.appendChild(showMore);
-
+        bookId++;
         const addToCart = document.createElement('button');
         addToCart.textContent = 'Add to Cart';
         addToCart.classList.add("add");
@@ -168,59 +131,255 @@ function bookDraw() {
 
     // Append all the cards to the container
     cardsContainer.appendChild(fragment);
+  
 }
 
+let cartId = 0;
+
+let totalSum;
+const cartContent = [];
+
+/* function that creates a modal-window */
+function renderModalWindow(id) {
+    const popUp = createDomElem(container, 'div', 'pop-up', undefined);
+    popUp.innerHTML = `<img class="popup-image" src ='${booksArray[id].imageLink}' alt='Selected book' />
+    <div class="popup-description">${booksArray[id].description}</div> <div class="popup-title">${booksArray[id].title}</div>
+    <button class="close-popup" type="button">✕</button>`;
+   
+    };
+
+
+/* listen to the Show More buttons */
+main.addEventListener('click', event => {
+    if (event.target.closest('.show')) {
+     const itemId = event.target.id;
+        renderModalWindow(itemId);
+
+    }
+    })
+
+
+ 
 
 
 /* Add to cart  */
-const cartContent = [];
-let booksAmount = 0;
-/* get the parent elemt for delegation */
 main.addEventListener('click', event => {
-    booksAmount++;
+
     if (event.target.closest('.add')) {
-        console.log('CLICK');    
-        addToCart();
+        addToCart(event.target);
     };
    
 })
 
-function addToCart() {
-    const card = event.target.closest('.card');
-        const cardId = card.getAttribute('id');
-        const bookId = +cardId.split('-')[0];
-        const book = booksArray[bookId];
-        const bookTitle = book.title;
-        const bookPrice = book.price;
-       // Add the book to the cart array
-        cartContent.push(book);
-    console.log(cartContent[bookId].title);
-       updateCartDisplay(); 
+document.addEventListener('drop', event => {
+    if(event.target.closest('.cart')) {
+        addToCart(beingDragged);
+    }
+})
+document.addEventListener('dragover', event => {
+    event.preventDefault();
+    /*  event.dataTransfer.dropEffect = "copy"; */
+  /*   if (event.target.closest('.cart')) {
+      event.dataTransfer.dropEffect = 'copy';
+     document.body.style.cursor = 'default'
+      cart.style.backgroundColor = 'lightgray'; 
+     
+        
+    } */
+})
+
+main.addEventListener('dragstart', event => {
+       
+    if (event.target.closest('.card')) {
+        beingDragged = event.target;
+   
+
+    }   
+   })
+
+function cartSum() {
+    totalSum = 0;
+    for (let item of cartContent) {
+        totalSum += item.price;
+    }
+}
+/* function cartSubstract() {
+    totalSum = 0;
+    for (let item of cartContent) {
+        totalSum += item.price;
+    }
+} */
+function enableConfirm() {
+if (cartContent.length > 0) {
+        confirmButton.style.display = "block";
+  console.log('it worked');
+} else {
+    confirmButton.style.display = "none";
+    }
 }
 
-function updateCartDisplay() {
-    const cartElement = document.querySelector('.cart');
-    const cartCount = cartContent.length;
+function addToCart(target) {
 
-    // Create a new h2 element to display the cart count
-    /* const cartCountElement = createDomElem(main, 'div', 'cart-count', undefined, `You have ${cartCount} book(s) in your cart.`); */
-    cartCountElement.innerHTML = `You have ${cartCount} book(s) in your cart.`;
-    cartCountElement.classList.add('cart-count');
-
-/*     // Create a new div element to display the books in the cart
-    const cartListElement = createDomElem(cartCountElement, 'div', 'cart-list', undefined);
-    cartListElement.classList.add('cart-list');
-
-    // TEST Add each book to the cart list
-    cartListElement.innerHTML = `${book.title} by ${book.author} - ${book.price}`;
- */
-    // Add each book to the cart list
-   /*  cartContent.forEach(book => {
-        const cartItemElement = document.createElement('li');
-        cartItemElement.textContent = `${book.title} by ${book.author} - ${book.price}`;
-        cartListElement.appendChild(cartItemElement);
-        // Add the cart list to the cart element
-        cartElement.appendChild(cartListElement);
+    const card = target.closest('.card');
+    const cardId = card.getAttribute('id');
+    const bookId = +cardId.split('-')[0];
+    const book = booksArray[bookId];
+    const bookTitle = book.title;
+    const bookPrice = book.price;
+    const bookAuthor = book.author;
+    const cartBook = { ...booksArray[bookId], id: cartId };
     
-    }); */
+    cartContent.push(cartBook);
+    cartId++;
+    /* Cart content sum */
+
+    cartSum(); 
+    enableConfirm();
+   
+    /*    console.log(cartContent[bookId].title); */
+    renderCart();
+    console.log(cartCountNum);
+
+
+
+
 }
+
+//The Number of books in the cart
+
+
+function renderCart() {
+    cartCountNum = cartContent.length;
+    cartcount();
+    
+    
+      
+    cartList.innerHTML = '';
+        
+
+        cartContent.forEach(book => {
+    
+  
+         // Create a new li element to display the books in the cart
+           
+                const cartListElement = createDomElem(cartList, 'li', 'cart-list', undefined, `${book.title} by ${book.author} - $${book.price}`);
+                cartListElement.classList.add('cart-list');
+                createDomElem(cartListElement,'button', 'remove', `${book.id}`, 'remove' )
+   
+            
+
+        });
+  // Convert array to JSON string
+        const cartContentSaved = JSON.stringify(cartContent);
+
+        // Save JSON string to local storage
+    localStorage.setItem("cartContent", cartContentSaved);
+    console.log(JSON.parse(localStorage.getItem("cartContent")));
+}
+
+/* Change the cursor on drag */
+document.addEventListener("dragstart", (event) => {
+    const myDragObject = event.target.closest('.card');
+    event.dataTransfer.effectAllowed = 'move';
+    myDragObject.style.cursor = 'grabbing';
+    myDragObject.addEventListener("dragend", (event) => {
+        myDragObject.style.cursor = 'default';
+     })
+});
+
+
+document.addEventListener('click', remove);
+/* Click the close pop-up button */
+function remove(event) {
+    const myTarget = event.target.closest('.remove');
+    const popupClose = event.target.closest('.close-popup');
+    if (popupClose) {
+       
+        event.target.closest('.pop-up').remove();
+    }
+    /* Clisk the remove button */
+    if (myTarget) {
+    
+        const deleteIndex = cartContent.findIndex((item) => item.id == myTarget.id);
+    
+        cartContent.splice(deleteIndex, 1);
+        
+        cartSum();
+        enableConfirm();
+        renderCart();
+        // Convert array to JSON string
+        const cartContentSaved = JSON.stringify(cartContent);
+
+        // Save JSON string to local storage
+        localStorage.setItem("cartContent", cartContentSaved);
+        console.log(JSON.parse(localStorage.getItem("cartContent")));
+
+        if (cartCountNum < 1) {
+            cartListContainer.classList.toggle('cart-container');
+       
+            cartListContainer.classList.toggle('cart-container-hidden');
+            cartCountElement.classList.remove('cart-count');
+            cartCountElement.classList.add('hidden');
+        }
+    
+    }
+}
+
+
+
+cartCountElement.addEventListener('click', function () {
+  const showLine = document.querySelector('.more');
+    const hideLine = document.querySelector('.hide');
+    console.log('EVENT IS');
+    console.log(event.target);
+    
+    if (event.target.closest('.cart-count')) {
+        
+        showLine.classList.toggle('invisible');
+        hideLine.classList.toggle('invisible');
+            
+        cartCountElement.classList.toggle('hide-clickme');
+        cartListContainer.classList.toggle('cart-container');
+       
+        cartListContainer.classList.toggle('cart-container-hidden');
+       
+      
+   
+    }
+
+})
+
+
+
+
+        // Create a new h2 element to display the cart count
+        /*  const cartCountElement = createDomElem(cartCountList, 'li', 'cart-count', undefined, `You have ${cartCount} book(s) in your cart.`); */
+function cartcount() {
+    
+    cartCountElement.innerHTML = `<span>You have ${cartContent.length} book(s) in your cart.</span> <div class="show-hide"> <span class="more"><p>cart details:<span class="sum"> $${totalSum}</p></span></span> <br>  <span class= "hide invisible"><p>click to hide</p></span></div>`;
+    const hideLine = document.querySelector('.hide');
+
+            cartCountElement.classList.remove('hidden');
+        cartCountElement.classList.add('cart-count');}
+    
+  
+ 
+
+
+       
+        // TEST Add each book to the cart list
+        // cartListElement.innerHTML = `${bookTitle} by ${bookAuthor} - ${bookPrice}`;
+        //}
+
+
+ 
+        // Add each book to the cart list
+        /*  cartContent.forEach(book => {
+             const cartItemElement = document.createElement('li');
+             cartItemElement.textContent = `${book.title} by ${book.author} - ${book.price}`;
+             cartListElement.appendChild(cartItemElement);
+             // Add the cart list to the cart element
+             cartElement.appendChild(cartListElement);
+         
+         }); */
+ 
