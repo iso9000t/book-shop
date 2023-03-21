@@ -274,18 +274,18 @@ function renderCart() {
 
         // Save JSON string to local storage
     localStorage.setItem("cartContent", cartContentSaved);
-    console.log(JSON.parse(localStorage.getItem("cartContent")));
+/*     console.log(JSON.parse(localStorage.getItem("cartContent"))); */
 }
 
 /* Change the cursor on drag */
-document.addEventListener("dragstart", (event) => {
+/* document.addEventListener("dragstart", (event) => {
     const myDragObject = event.target.closest('.card');
     event.dataTransfer.effectAllowed = 'move';
     myDragObject.style.cursor = 'grabbing';
     myDragObject.addEventListener("dragend", (event) => {
         myDragObject.style.cursor = 'default';
      })
-});
+}); 
 
 
 document.addEventListener('click', remove);

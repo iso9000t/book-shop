@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookshop. Online bookstore for developers.</title>
+    <script defer src="forms.js"></script>
     <link rel="stylesheet" href="/normalize.css" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,30 +18,36 @@
   <body>
    
     <div class="container">
-       
-       <form action="#">
+       <div class="invisible warning" id="warningName">Your name should be 4 - 15 characters long, no spaces</div>
+       <div class="invisible warning" id="warningSurname">Your surname should be 5 - 20 characters long, no spaces</div>
+       <div class="invisible warning" id="warningStreet">Your street should be 5 - 25 characters long</div>
+       <div class="invisible warning" id="warningHouse">Your house number should be 1 - 10 characters long</div>
+       <div class="invisible warning" id="warningFlat">Your flat, numbers or numbers followed by a dash, 1 - 5 characters long</div>
+       <div class="invisible warning" id="warningDate">Your date</div>
+       <form name="main" action="#">
+         <div class ="final-message invisible"></div>
         <a href="index.html" class="main-page">Back to the main page</a>
         <h2>ORDER FORM</h2>
         <div class="formlist">
           <div class="field-name">
             <label for="name">Name</label>
-            <input type="text" id="name" name="userName" minlength="4" maxlength="15" placeholder="Enter your name" required />
-          </div>
+            <input type="text" id="name" name="userName" minlength="4" maxlength="15" placeholder="Enter your name" required autofocus title="Your name should be 4-15 letters long, no spaces" pattern="^[a-zA-Z]{4,15}$" />
+        </div>
           <div class="field-name">
             <label for="surname">Surname</label>
-            <input type="text" id="surname" name="userSurname" minlength="5" maxlength="20" placeholder="Enter your surname" required/>
+            <input type="text" id="surname" name="userSurname" minlength="5" maxlength="20" placeholder="Enter your surname" required pattern="^[a-zA-Z]{5,20}$"/>
           </div>
           <div class="field-name">
             <label for="street">Street</label>
-            <input type="text" id="street" name="street" minlength="5" maxlength="15" placeholder="Enter your street name" required />
+            <input type="text" id="street" name="street" minlength="5" maxlength="25" placeholder="Enter your street name" required pattern="^[a-zA-Z0-9 ]{5,25}$"/>
           </div>
           <div class="field-name">
             <label for="house">House</label>
-            <input  type="text" id="house" name="house" maxlength="15" placeholder="Enter your house number" required />
+            <input  type="text" id="house" name="house" maxlength="15" placeholder="Enter your house number" required pattern="[1-9][0-9]{0,9}" />
           </div>
           <div class="field-name">
             <label for="flat">Flat</label>
-            <input type="text" id="flat" name="flat" maxlength="15" placeholder="Enter your flat number" required/>
+            <input type="text" id="flat" name="flat" maxlength="15" placeholder="Enter your flat number" required pattern="\d{1,5}(-\d{1,5})?"/>
           </div>
           <div class="field-name">
             <label for="date">Delivery date</label>
@@ -74,12 +81,15 @@
                <label>Provide 2% discount to the next purchase</label>
             </div>
             <div class="field-name">
-               <input type="checkbox" name="gifts[]" value="branded-pen" required/>
+               <input type="checkbox" name="gifts[]" value="branded-pen"/>
                <label>Branded pen or pencil</label>
             </div>
           </div>
-
+          <div class="reset-confirm">
+            <div class="reset-div"><button type="reset" class="reset" id="reset">Clear all</button></div>
+            <div class="complete-div"><button type="submit" class="complete disabled" id="complete">Complete</button></div>
         </div>
+      </div>
       </form>
     </div>
     <!-- <script src="/script.js"></script> -->
