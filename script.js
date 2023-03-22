@@ -39,6 +39,8 @@ const footerEmail = createDomElem(footer, 'h3', 'email', undefined, 'office@book
 const removeButton = document.querySelector('.remove');
 let beingDragged;
 let cartCountNum = 0;
+let popUpFlag = false;
+let cartListFlag = false;
 
 // Fetch cart items from JSON file
 
@@ -119,6 +121,7 @@ const cartContent = [];
 
 /* function that creates a modal-window */
 function renderModalWindow(id) {
+ 
     const popUp = createDomElem(container, 'div', 'pop-up', undefined);
     popUp.innerHTML = `<img class="popup-image" src ='${booksArray[id].imageLink}' alt='Selected book' />
     <div class="popup-description">${booksArray[id].description}</div> <div class="popup-title">${booksArray[id].title}</div>
@@ -127,16 +130,28 @@ function renderModalWindow(id) {
     cart.style.right = "24px";
     cartCountElement.style.right = "24px";
  
+ 
    
     };
 
 
 /* listen to the Show More buttons */
 main.addEventListener('click', event => {
-    if (event.target.closest('.show')) {
-     const itemId = event.target.id;
-        renderModalWindow(itemId);
+    if (popUpFlag === false) {
+        console.log(popUpFlag);
+        if (event.target.closest('.show')) {
 
+            if (cartListContainer) {
+            cartListContainer.classList.remove('cart-container');
+       
+            cartListContainer.classList.add('cart-container-hidden');
+
+            }
+            const itemId = event.target.id;
+            popUpFlag = true;
+            console.log(popUpFlag);
+            renderModalWindow(itemId);
+        }
     }
     })
 
@@ -146,7 +161,7 @@ main.addEventListener('click', event => {
 /* Add to cart  */
 main.addEventListener('click', event => {
 
-    if (event.target.closest('.add')) {
+    if (event.target.closest('.add') && popUpFlag !== true) {
         addToCart(event.target);
     };
    
@@ -243,7 +258,7 @@ function renderCart() {
 
 
 document.addEventListener('click', remove);
-/* Click the close pop-up button */
+/* Click the closest pop-up button */
 function remove(event) {
     const myTarget = event.target.closest('.remove');
     const popupClose = event.target.closest('.close-popup');
@@ -253,6 +268,8 @@ function remove(event) {
         body.classList.remove('blocked');
         cart.style.right = "7px";
         cartCountElement.style.right = "7px";
+     
+        popUpFlag = false;
     }
     /* Clisk the remove button */
     if (myTarget) {
@@ -282,33 +299,35 @@ function remove(event) {
 
 
 cartCountElement.addEventListener('click', function () {
-  const showLine = document.querySelector('.more');
-    const hideLine = document.querySelector('.hide');
+  
    
-    if (event.target.closest('.cart-count')) {
-        
-        showLine.classList.toggle('invisible');
-        hideLine.classList.toggle('invisible');
-            
-        cartCountElement.classList.toggle('hide-clickme');
-        cartListContainer.classList.toggle('cart-container');
-       
-        cartListContainer.classList.toggle('cart-container-hidden');
-       
+    if (event.target.closest('.cart-count') && !popUpFlag) {
+    
+        toggleCartList();
       
    
     }
 
 })
 
-
+function toggleCartList () {
+    const showLine = document.querySelector('.more');
+    const hideLine = document.querySelector('.hide');
+    showLine.classList.toggle('invisible');
+    hideLine.classList.toggle('invisible');
+            
+    cartCountElement.classList.toggle('hide-clickme');
+    cartListContainer.classList.toggle('cart-container');
+       
+    cartListContainer.classList.toggle('cart-container-hidden');
+}
 
 
         // Create a new h2 element to display the cart count
         /*  const cartCountElement = createDomElem(cartCountList, 'li', 'cart-count', undefined, `You have ${cartCount} book(s) in your cart.`); */
 function cartcount() {
     
-cartCountElement.innerHTML = `<span>You have ${cartContent.length} book(s) in your cart.</span> <div class="show-hide"> <span class="more"><p>cart details:<span class="sum"> $${totalSum}</p></span></span> <br>  <span class= "hide invisible"><p>click to hide</p></span></div>`;
+cartCountElement.innerHTML = `<span>You have ${cartContent.length} book(s) in your cart.</span> <div class="show-hide"> <span class="more invisible"><p>cart details:<span class="sum"> $${totalSum}</p></span></span> <br>  <span class= "hide"><p>click for details</p></span></div>`;
 const hideLine = document.querySelector('.hide');
 
 cartCountElement.classList.remove('hidden');
