@@ -145,13 +145,16 @@ document.addEventListener("change", function (e) {
         if (checked.length >= 2) {
       
             unchecked.forEach((box) => box.disabled = true);
-        } else { unchecked.forEach((box) => box.disabled = false); }
+        } else {unchecked.forEach((box) => box.disabled = false); }
     
     }
 
     if (mainForm.reportValidity() === true) {
         completeButton.classList.remove('disabled');
-    } else {completeButton.classList.add('disabled');}
+        completeButton.disabled = false;
+    } else {
+        completeButton.classList.add('disabled');
+        completeButton.disabled = true;}
 
    
 
@@ -183,8 +186,8 @@ completeButton.addEventListener('click', (e) => {
     const deliveryDate = new Date(mainForm.date.value);
 
     finalMessage.innerHTML = `<p class="message-content">Dear ${nameField.value} ${surname.value}, your order has been accepted. Your order details:<br> 
-    Your books: ${allTitles()}, total sum: $${totalPrice()}. The delivery is scheduled for ${deliveryDate.toDateString()}. The delivery address is: ${street.value}, building ${house.value}, apartment ${flat.value}. Selected presents: ${stringOfGifts}.  Payment method: ${paymentMethod}.
-     </p><button class="finish" onclick="sumbitForm()">Send</button>`;
+    Your books:<br> ${allTitles()},<br> total sum: $${totalPrice()}.<br> The delivery is scheduled for ${deliveryDate.toDateString()}.<br> The delivery address is: ${street.value}, building ${house.value}, apartment ${flat.value}.<br> Selected presents: ${stringOfGifts}.<br>  Payment method: ${paymentMethod}.
+     </p><button type="submit" class="finish" form="my-form">Send</button>`;
     
 
 
@@ -194,13 +197,16 @@ completeButton.addEventListener('click', (e) => {
 
 function sumbitForm() {
     mainForm.disabled = false; 
-    finalMessage.innerHTML = "<p>ORDER SUBMITTED</p>";
-    mainForm.submit();
+    resetButton.disabled = false;
+    completeButton.disabled = true;
+   /*  completeButton.classList("disabled"); */
+   /*  finalMessage.innerHTML = "<p class='final'>ORDER SUBMITTED</p>"; */
+    /* mainForm.submit(); */
  }
 
 function allTitles () {
-    titles = cartContent.map(book => `"${++bookCounter}) ${book.title} by ${book.author}"`);
-    titlesString = titles.join(', ')
+    titles = cartContent.map(book => `${++bookCounter}) ${book.title} by ${book.author}"`);
+    titlesString = titles.join(',<br> ')
     return titlesString;
 }
 

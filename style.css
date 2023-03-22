@@ -1,5 +1,11 @@
 
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000000s ease-in-out 0s;
+}
 
 
 
@@ -67,7 +73,7 @@ li {
     margin-top: 20px;
     border: 2px solid rgb(102, 61, 61);
     display: block;
-    max-height: 65vh;
+    max-height: 63vh;
         /* set the maximum height of the container */
     overflow: auto;
         /* enable scrolling if the content overflows the container */
@@ -680,14 +686,16 @@ gap: 63px;
 }
 .final-message {
     position: fixed;
-    top: 10%;
-    width:900px;
-    height: 400px;
+    top: 1%;
+    width: 70vw;
+    max-height: 97vh;
     background-color: #ab978d;
     border-radius: 10px;
     border: 5px double rgb(106, 61, 61);
     z-index: 1;
+    overflow-y: auto;
 }
+
 .message-content {
 
     color: #fff;
@@ -695,6 +703,7 @@ gap: 63px;
     padding: 20px;
     line-height: 2em;
     font-size: larger;
+    
 
 }
 .finish {
@@ -703,4 +712,14 @@ gap: 63px;
      display: block;
     
 
+}
+
+.final {
+   
+   padding: 5%;
+    vertical-align: middle;
+    color: #fff;
+    text-align: center;
+    align-items: center;
+   
 }

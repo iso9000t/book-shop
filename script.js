@@ -178,6 +178,7 @@ document.addEventListener('drop', event => {
 })
 document.addEventListener('dragover', event => {
     event.preventDefault();
+    
     /*  event.dataTransfer.dropEffect = "copy"; */
   /*   if (event.target.closest('.cart')) {
       event.dataTransfer.dropEffect = 'copy';
@@ -285,7 +286,7 @@ function renderCart() {
     myDragObject.addEventListener("dragend", (event) => {
         myDragObject.style.cursor = 'default';
      })
-}); 
+});  */
 
 
 document.addEventListener('click', remove);
@@ -299,7 +300,7 @@ function remove(event) {
     }
     /* Clisk the remove button */
     if (myTarget) {
-    
+        console.log('Clicking');
         const deleteIndex = cartContent.findIndex((item) => item.id == myTarget.id);
     
         cartContent.splice(deleteIndex, 1);
