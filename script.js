@@ -1,14 +1,3 @@
-/* // Fetch data from JSON file
-const booksArray = [];
-fetch('books.json')
-    .then(response => response.json())
-    .then(data => { 
-        booksArray.push(...data);
-        renderAllProducts();
-       
-    }) */
-   
-
 /////////Creating all the newElements for layout
 function createDomElem(parentElement, newTagIs, newElemClass = "", newElemID = "", textContent = "") {
     const fragment = document.createDocumentFragment();
@@ -53,14 +42,6 @@ let cartCountNum = 0;
 
 // Fetch cart items from JSON file
 
-/* fetch('books.json')
-    .then(response => response.json())
-    .then(cartItemsArray => { 
-        cartArray = cartItemsArray;
-        renderAllCartItems();   
-    })
-
- */
 const booksArray = [];
 /* const cartArray = []; */
 fetch('books.json')
@@ -70,9 +51,6 @@ fetch('books.json')
         renderAllProducts();
        
     })
-/* /*     .catch(error => {
-        console.log(error);
-    }); */
  
 function renderAllProducts() {
     const cardsContainer = document.querySelector('.cards');
@@ -161,7 +139,6 @@ main.addEventListener('click', event => {
 
  
 
-
 /* Add to cart  */
 main.addEventListener('click', event => {
 
@@ -179,14 +156,7 @@ document.addEventListener('drop', event => {
 document.addEventListener('dragover', event => {
     event.preventDefault();
     
-    /*  event.dataTransfer.dropEffect = "copy"; */
-  /*   if (event.target.closest('.cart')) {
-      event.dataTransfer.dropEffect = 'copy';
-     document.body.style.cursor = 'default'
-      cart.style.backgroundColor = 'lightgray'; 
-     
-        
-    } */
+
 })
 
 main.addEventListener('dragstart', event => {
@@ -204,16 +174,11 @@ function cartSum() {
         totalSum += item.price;
     }
 }
-/* function cartSubstract() {
-    totalSum = 0;
-    for (let item of cartContent) {
-        totalSum += item.price;
-    }
-} */
+
 function enableConfirm() {
 if (cartContent.length > 0) {
         confirmButton.style.display = "block";
-  console.log('it worked');
+ 
 } else {
     confirmButton.style.display = "none";
     }
@@ -236,14 +201,8 @@ function addToCart(target) {
 
     cartSum(); 
     enableConfirm();
-   
-    /*    console.log(cartContent[bookId].title); */
     renderCart();
-    console.log(cartCountNum);
-
-
-
-
+ 
 }
 
 //The Number of books in the cart
@@ -278,16 +237,6 @@ function renderCart() {
 /*     console.log(JSON.parse(localStorage.getItem("cartContent"))); */
 }
 
-/* Change the cursor on drag */
-/* document.addEventListener("dragstart", (event) => {
-    const myDragObject = event.target.closest('.card');
-    event.dataTransfer.effectAllowed = 'move';
-    myDragObject.style.cursor = 'grabbing';
-    myDragObject.addEventListener("dragend", (event) => {
-        myDragObject.style.cursor = 'default';
-     })
-});  */
-
 
 document.addEventListener('click', remove);
 /* Click the close pop-up button */
@@ -300,7 +249,6 @@ function remove(event) {
     }
     /* Clisk the remove button */
     if (myTarget) {
-        console.log('Clicking');
         const deleteIndex = cartContent.findIndex((item) => item.id == myTarget.id);
     
         cartContent.splice(deleteIndex, 1);
@@ -313,8 +261,6 @@ function remove(event) {
 
         // Save JSON string to local storage
         localStorage.setItem("cartContent", cartContentSaved);
-        console.log(JSON.parse(localStorage.getItem("cartContent")));
-
         if (cartCountNum < 1) {
             cartListContainer.classList.toggle('cart-container');
        
@@ -331,9 +277,7 @@ function remove(event) {
 cartCountElement.addEventListener('click', function () {
   const showLine = document.querySelector('.more');
     const hideLine = document.querySelector('.hide');
-    console.log('EVENT IS');
-    console.log(event.target);
-    
+   
     if (event.target.closest('.cart-count')) {
         
         showLine.classList.toggle('invisible');
@@ -357,30 +301,16 @@ cartCountElement.addEventListener('click', function () {
         /*  const cartCountElement = createDomElem(cartCountList, 'li', 'cart-count', undefined, `You have ${cartCount} book(s) in your cart.`); */
 function cartcount() {
     
-    cartCountElement.innerHTML = `<span>You have ${cartContent.length} book(s) in your cart.</span> <div class="show-hide"> <span class="more"><p>cart details:<span class="sum"> $${totalSum}</p></span></span> <br>  <span class= "hide invisible"><p>click to hide</p></span></div>`;
-    const hideLine = document.querySelector('.hide');
+cartCountElement.innerHTML = `<span>You have ${cartContent.length} book(s) in your cart.</span> <div class="show-hide"> <span class="more"><p>cart details:<span class="sum"> $${totalSum}</p></span></span> <br>  <span class= "hide invisible"><p>click to hide</p></span></div>`;
+const hideLine = document.querySelector('.hide');
 
-            cartCountElement.classList.remove('hidden');
-        cartCountElement.classList.add('cart-count');}
+cartCountElement.classList.remove('hidden');
+cartCountElement.classList.add('cart-count');}
     
   
  
 
 
        
-        // TEST Add each book to the cart list
-        // cartListElement.innerHTML = `${bookTitle} by ${bookAuthor} - ${bookPrice}`;
-        //}
-
-
  
-        // Add each book to the cart list
-        /*  cartContent.forEach(book => {
-             const cartItemElement = document.createElement('li');
-             cartItemElement.textContent = `${book.title} by ${book.author} - ${book.price}`;
-             cartListElement.appendChild(cartItemElement);
-             // Add the cart list to the cart element
-             cartElement.appendChild(cartListElement);
-         
-         }); */
  

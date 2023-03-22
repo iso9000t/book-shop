@@ -116,21 +116,10 @@ mainForm.addEventListener('focusout', function (event) {
 
     }
 
-      /* gifts check */
-/*     if (field == gifts) {
-console.log('CHECKED');
-        if (!field.checkValidity()) {
- 
-            console.log(`TOO SOON`);
-        } else { console.log("DATE IS OK")
 
-
-        }
-    
-    } */
 
 })
-
+/* Checkbox auto switch-off */
 document.addEventListener("change", function (e) {
 
      
@@ -155,9 +144,6 @@ document.addEventListener("change", function (e) {
     } else {
         completeButton.classList.add('disabled');
         completeButton.disabled = true;}
-
-   
-
 
 
 });
@@ -189,7 +175,6 @@ completeButton.addEventListener('click', (e) => {
     Your books:<br> ${allTitles()},<br> total sum: $${totalPrice()}.<br> The delivery is scheduled for ${deliveryDate.toDateString()}.<br> The delivery address is: ${street.value}, building ${house.value}, apartment ${flat.value}.<br> Selected presents: ${stringOfGifts}.<br>  Payment method: ${paymentMethod}.
      </p><button type="submit" class="finish" form="my-form">Send</button>`;
     
-
 
     
  })
