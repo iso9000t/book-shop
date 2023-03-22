@@ -16,6 +16,12 @@ body {
     user-select: none;
 }
 
+.blocked {
+    overflow: hidden;
+    padding-right: 17px;
+    
+}
+
 
 .container {
     max-width: 1900px;
@@ -77,7 +83,7 @@ li {
         /* set the maximum height of the container */
     overflow: auto;
         /* enable scrolling if the content overflows the container */
-    
+  
     
 }
 
@@ -97,10 +103,15 @@ li {
     border-color: transparent rgb(176, 105, 105) rgb(176, 105, 105) rgb(176, 105, 105);
     transition: background-color 0.3s ease-out;
     z-index: 2;
+   
+
  }  
+
  .cart-header{
     text-align: center;
     z-index: -2;
+    
+    
  }
 
  .cart:hover {
@@ -246,7 +257,7 @@ line-height: 2rem;
     transition: transform 0.3s ease-out;
     line-height: 0px;
     padding-top: 45px;
-    cursor: pointer;;
+    cursor: pointer;
     
 }
 .cart-count p {

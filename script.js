@@ -123,6 +123,10 @@ function renderModalWindow(id) {
     popUp.innerHTML = `<img class="popup-image" src ='${booksArray[id].imageLink}' alt='Selected book' />
     <div class="popup-description">${booksArray[id].description}</div> <div class="popup-title">${booksArray[id].title}</div>
     <button class="close-popup" type="button">✕</button>`;
+    body.classList.add('blocked');
+    cart.style.right = "24px";
+    cartCountElement.style.right = "24px";
+ 
    
     };
 
@@ -246,6 +250,9 @@ function remove(event) {
     if (popupClose) {
        
         event.target.closest('.pop-up').remove();
+        body.classList.remove('blocked');
+        cart.style.right = "7px";
+        cartCountElement.style.right = "7px";
     }
     /* Clisk the remove button */
     if (myTarget) {
