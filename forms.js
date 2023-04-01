@@ -33,14 +33,12 @@ let bookCounter = 0;
 
 
 let placeholder;
-const tomorrow = new Date();
-
-const formattedDate = tomorrow.toLocaleString().substr(0, 10);
-const tomorrowDay = +tomorrow.toLocaleString().substr(0, 2) + 1;
-const month = tomorrow.toLocaleString().substr(3, 2);
-const year = tomorrow.toLocaleString().substr(6, 4);
-let isoDate = `${year}-${month}-${tomorrowDay}`;
-
+const today = new Date();
+const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+const year = today.getFullYear();
+const month = (tomorrow.getMonth() + 1).toString().padStart(2, '0');
+const day = tomorrow.getDate().toString().padStart(2, '0');
+let isoDate = `${year}-${month}-${day}`;
 date.min = isoDate;
 
 
